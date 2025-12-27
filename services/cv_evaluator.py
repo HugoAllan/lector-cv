@@ -32,7 +32,7 @@ def evaluar_candidato(texto_cv: str, descripcion_puesto: str) -> AnalisisCV:
             habilidades_clave=["Error al procesar CV"],
             education="No se puede determinar.",
             experiencia_relevante="Error durante el análisis.",
-            fotalezas=["Requiere revisión manual del CV"],
+            fortalezas=["Requiere revisión manual del CV"],
             areas_mejora=["Verificar formato y legibilidad del PDF"],
-            porcetaje_ajuste=0
+            porcentaje_ajuste=0
         )
