@@ -1,13 +1,21 @@
 from langchain_openai import ChatOpenAI
 from models.cv_model import AnalisisCV
 from prompts.cv_prompts import crear_sistema_prompts
+import os
+try:
+    from dotenv import load_dotenv
+    load_dotenv()  # en Cloud Run no hace nada si no hay .env
+except Exception:
+    pass
+
 
 def crear_evaluador_cv():
+    if not os.getenv("OPENAI_API_KEY"):
+        raise RuntimeError("OPENAI_API_KEY no está configurada")
     modelo_base = ChatOpenAI(
         model="gpt-4o-mini",
         temperature=0.2
     )
-
     modelo_estructurado = modelo_base.with_structured_output(AnalisisCV)
     chat_prompt = crear_sistema_prompts()
     cadena_evaluacion = chat_prompt | modelo_estructurado
